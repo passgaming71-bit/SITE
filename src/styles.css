@@ -455,3 +455,35 @@ p {
   }
 }
 
+
+@media (max-width: 768px) {
+  html,
+  body {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  .page {
+    padding-bottom: 140px;
+  }
+
+  .inputRow {
+    position: sticky;
+    bottom: 0;
+    background: #0D0D0D;
+    padding: 12px 0 18px;
+    z-index: 20;
+  }
+
+  .input {
+    font-size: 18px !important;
+  }
+}
+
