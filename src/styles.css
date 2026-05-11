@@ -403,3 +403,55 @@ p {
   cursor: pointer;
   font-weight: 800;
 }
+
+@media (max-width: 768px) {
+  .page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 24px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .header h1 {
+    font-size: 42px;
+    line-height: 1.05;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .menuCard {
+    width: 100%;
+    min-height: 150px;
+    padding: 28px;
+    border-radius: 28px;
+  }
+
+  .userBox {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .itemCard,
+  .emptyCard {
+    width: 100%;
+  }
+
+  .inputRow {
+    flex-direction: column;
+  }
+
+  .input,
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}
+
