@@ -1,0 +1,405 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #0D0D0D;
+  color: #FFFFFF;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+button, input {
+  font: inherit;
+}
+
+.page {
+  width: min(980px, 100%);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 28px;
+  background:
+    radial-gradient(circle at top right, rgba(13,110,253,0.16), transparent 30%),
+    #0D0D0D;
+}
+
+.center {
+  display: grid;
+  place-content: center;
+  text-align: center;
+  gap: 18px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 54px);
+  line-height: 1;
+}
+
+h2 {
+  margin: 0 0 16px;
+  font-size: 26px;
+}
+
+h3 {
+  margin: 0 0 16px;
+}
+
+p {
+  color: #BFC7D5;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.menuCard {
+  min-height: 135px;
+  border: 1px solid #2A2A2A;
+  background: linear-gradient(180deg, #1A1A1A, #141414);
+  border-radius: 24px;
+  padding: 20px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.menuCard:hover {
+  transform: translateY(-2px);
+  border-color: #0D6EFD;
+}
+
+.menuCard strong {
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.menuCard small {
+  color: #BFC7D5;
+}
+
+.danger {
+  border-color: rgba(248, 113, 113, 0.35);
+}
+
+.backButton {
+  background: #1A1A1A;
+  color: #BFC7D5;
+  border: 1px solid #2A2A2A;
+  border-radius: 14px;
+  padding: 10px 14px;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+
+
+.itemSelector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: fit-content;
+  margin: 0 auto 22px auto;
+
+  background: transparent;
+  color: #FFFFFF;
+
+  border: 1px solid transparent;
+  border-radius: 14px;
+
+  padding: 10px 18px;
+
+  font-size: 34px;
+  font-weight: 900;
+
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.itemSelector:hover {
+  background: #151515;
+  border-color: #2A2A2A;
+}
+
+.itemSelector::after {
+  content: "✎";
+
+  margin-left: 10px;
+
+  color: #3BA0FF;
+
+  font-size: 18px;
+  font-weight: 800;
+}
+
+
+.itemCard,
+.emptyCard {
+  border: 1px solid #2A2A2A;
+  background: #151515;
+  border-radius: 24px;
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.itemCard.success {
+  background: #0F2D1D;
+  border-color: #1D4D36;
+}
+
+.itemCard.danger {
+  background: #2B1215;
+  border-color: #4A1F24;
+}
+
+.okText {
+  color: #34D399;
+  font-weight: 800;
+}
+
+.inputRow,
+.navRow,
+.actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.input {
+  flex: 1;
+  min-width: 220px;
+  border: 2px solid #0D6EFD;
+  background: #111111;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 16px;
+  font-size: 20px;
+  outline: none;
+}
+
+.primaryButton,
+.secondaryButton {
+  border: 1px solid #3BA0FF;
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primaryButton {
+  background: #0D6EFD;
+  color: #FFFFFF;
+}
+
+.secondaryButton {
+  background: #1A1A1A;
+  border-color: #2A2A2A;
+  color: #FFFFFF;
+}
+
+.progressBox {
+  margin-bottom: 10px;
+}
+
+.progressBar {
+  height: 12px;
+  border: 1px solid #2A2A2A;
+  background: #1A1A1A;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #0D6EFD;
+}
+
+.progressText {
+  margin-top: 5px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.summary {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.summary span {
+  border: 1px solid #2A2A2A;
+  background: #1A1A1A;
+  color: #BFC7D5;
+  border-radius: 10px;
+  padding: 7px 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.list {
+  display: grid;
+  gap: 12px;
+}
+
+.diffCard {
+  text-align: left;
+  border: 1px solid #4A1F24;
+  background: #2B1215;
+  color: #FFFFFF;
+  border-radius: 18px;
+  padding: 18px;
+  display: grid;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.muted {
+  color: #BFC7D5;
+}
+
+.loader {
+  width: 64px;
+  height: 64px;
+  border: 6px solid #1A1A1A;
+  border-top-color: #0D6EFD;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}
+
+.loginPage {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at top right, rgba(13,110,253,0.22), transparent 32%),
+    #0D0D0D;
+}
+
+.loginCard {
+  width: min(420px, 100%);
+  border: 1px solid #2A2A2A;
+  background: linear-gradient(180deg, #151515, #101010);
+  border-radius: 28px;
+  padding: 28px;
+  display: grid;
+  gap: 14px;
+  box-shadow: 0 20px 80px rgba(0,0,0,0.35);
+}
+
+.loginBrand {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+.loginLogo {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 14px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #0D6EFD, #0A2344);
+  display: grid;
+  place-items: center;
+  font-size: 44px;
+  font-weight: 900;
+  color: #FFFFFF;
+  box-shadow: 0 0 35px rgba(13,110,253,0.35);
+}
+
+.loginBrand h1 {
+  font-size: 34px;
+  margin: 0;
+}
+
+.loginBrand p {
+  color: #BFC7D5;
+}
+
+.loginCard label {
+  display: grid;
+  gap: 7px;
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+.loginCard input {
+  border: 2px solid #2A2A2A;
+  background: #111111;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 15px 16px;
+  outline: none;
+}
+
+.loginCard input:focus {
+  border-color: #0D6EFD;
+}
+
+.loginCard button {
+  border: 1px solid #3BA0FF;
+  background: #0D6EFD;
+  color: #FFFFFF;
+  border-radius: 16px;
+  padding: 15px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.userBox {
+  border: 1px solid #2A2A2A;
+  background: #151515;
+  border-radius: 16px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #FFFFFF;
+  font-weight: 800;
+}
+
+.userBox button {
+  border: 1px solid #2A2A2A;
+  background: #1A1A1A;
+  color: #BFC7D5;
+  border-radius: 10px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: 800;
+}
