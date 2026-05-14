@@ -1,0 +1,22 @@
+ODAX Estoque - correção de endereços aplicada
+
+Correção aplicada:
+- A importação agora reconhece automaticamente colunas de endereço com nomes diferentes.
+- Funciona com: Endereços, Endereços com espaço no final, Endereco, Endereço, MEZANINO, RUA, BIN, LOCAL, PRATELEIRA, POSIÇÃO, POSICAO e END.
+- Também aceita variações com acento, sem acento, maiúsculas/minúsculas e espaços.
+
+Também foi limpo:
+- node_modules removido do ZIP.
+- package-lock removido.
+- .gitignore adicionado.
+- vite.config.js adicionado.
+- package.json ajustado para build estável na Vercel.
+
+Para testar:
+npm install
+npm run dev
+
+Para publicar:
+git add .
+git commit -m "Corrigir importacao de enderecos"
+git push

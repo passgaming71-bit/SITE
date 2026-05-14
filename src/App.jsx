@@ -100,6 +100,30 @@ export default function App() {
     return Number.isNaN(convertido) ? 0 : convertido;
   }
 
+
+  function normalizarChave(chave) {
+    return String(chave || '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toUpperCase()
+      .trim();
+  }
+
+  function buscarCampo(objeto, nomesPossiveis) {
+    const nomesNormalizados = nomesPossiveis.map(normalizarChave);
+
+    const campo = Object.keys(objeto).find((key) =>
+      nomesNormalizados.includes(normalizarChave(key))
+    );
+
+    return campo ? objeto[campo] : '';
+  }
+
+  function buscarPrimeiroCampo(objeto, nomesPossiveis, valorPadrao = '') {
+    const valor = buscarCampo(objeto, nomesPossiveis);
+    return valor === null || valor === undefined || valor === '' ? valorPadrao : valor;
+  }
+
   async function importarExcel(event) {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -110,14 +134,79 @@ export default function App() {
       const ws = wb.Sheets[wb.SheetNames[0]];
       const json = XLSX.utils.sheet_to_json(ws, { defval: '' });
 
-      const dados = json.map((i) => ({
-        codigo: i['Material'] || i['MATERIAL'] || '',
-        material: i['Texto breve material'] || i['DESCRIÇÃO'] || i['Descrição'] || 'Sem nome',
-        unidade: i['Unid.medida basi'] || i['Unidade'] || 'UN',
-        endereco: i['Endereços'] || i['Enderecos'] || i['Endereco'] || '',
-        estoque: normalizarNumero(i['Utilização livre'] ?? i['Utilizacao livre'] ?? i['Saldo no Sistema']),
-        contagem: null,
-      }));
+      const dados = json.map((i) => {
+        const endereco = buscarPrimeiroCampo(i, [
+          'Endereços',
+          'Endereços ',
+          'Endereco',
+          'Endereço',
+          'Enderecos',
+          'Endereços',
+          'MEZANINO',
+          'Mezanino',
+          'Rua',
+          'RUA',
+          'Bin',
+          'BIN',
+          'Local',
+          'LOCAL',
+          'Prateleira',
+          'PRATELEIRA',
+          'Posição',
+          'Posicao',
+          'POSIÇÃO',
+          'POSICAO',
+          'End',
+          'END'
+        ], '');
+
+        return {
+          codigo: buscarPrimeiroCampo(i, [
+            'Material',
+            'MATERIAL',
+            'Código',
+            'Codigo',
+            'CÓDIGO',
+            'CODIGO'
+          ], ''),
+
+          material: buscarPrimeiroCampo(i, [
+            'Texto breve material',
+            'DESCRIÇÃO',
+            'Descrição',
+            'Descricao',
+            'DESCRIPTION',
+            'Material Descrição',
+            'Material Descricao'
+          ], 'Sem nome'),
+
+          unidade: buscarPrimeiroCampo(i, [
+            'Unid.medida basi',
+            'Unidade',
+            'UN',
+            'UMB',
+            'Unid',
+            'Unidade Medida'
+          ], 'UN'),
+
+          endereco: String(endereco || '').trim(),
+
+          estoque: normalizarNumero(buscarPrimeiroCampo(i, [
+            'Utilização livre',
+            'Utilizacao livre',
+            'Saldo no Sistema',
+            'Saldo Sistema',
+            'Estoque',
+            'ESTOQUE',
+            'Saldo',
+            'SALDO',
+            'Livre utilização',
+            'Livre utilizacao'
+          ], 0)),
+
+          contagem: null,
+        };
+      });
 
       const ordenado = ordenar(dados);
       setLista(ordenado);
