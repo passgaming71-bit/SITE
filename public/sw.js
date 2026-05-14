@@ -1,4 +1,4 @@
-const CACHE_NAME = 'odax-estoque-v1';
+const CACHE_NAME = 'odax-estoque-v2';
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
